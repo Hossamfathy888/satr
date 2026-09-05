@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Quiz } from '@/data/lessons';
+import { Quiz } from '@/lib/lessons'; // <-- تم تصحيح المسار هنا من data إلى lib
 
 interface QuizComponentProps {
   quiz: Quiz;
@@ -34,7 +34,8 @@ export default function QuizComponent({ quiz }: QuizComponentProps) {
       <p className="text-lg text-slate-700 mb-6 font-medium">{quiz.question}</p>
 
       <div className="space-y-3 mb-6">
-        {quiz.options.map((option, index) => {
+        {/* تم إضافة الأنواع (string, number) صراحةً لإسكات خطأ TypeScript */}
+        {quiz.options.map((option: string, index: number) => {
           let optionStyle = "bg-white border-slate-200 hover:border-satr-primary hover:bg-slate-50";
           
           if (showResult) {
