@@ -1,0 +1,26 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* تفعيل الوضع الليلي بناءً على الكلاس (مهم جداً لـ Tailwind v4) */
+@custom-variant dark (&:is(.dark *));
+
+/* تعريف ألوان وخطوط منصة "سطر" */
+@theme {
+  --color-satr-primary: #4F46E5;
+  --color-satr-hover: #4338CA;
+  --color-satr-accent: #06B6D4;
+  --color-satr-dark: #0F172A;
+  
+  --font-sans: 'var(--font-tajawal)';
+  --font-mono: 'var(--font-mono)';
+}
+
+/* تنسيقات الوضع النهاري (الافتراضي) */
+body {
+  @apply bg-white text-slate-800 antialiased;
+}
+
+/* تنسيقات الوضع الليلي */
+.dark body {
+  @apply bg-slate-900 text-slate-100;
+}
