@@ -71,4 +71,5 @@ export const availableCourses = [
   { id: 'html', name: 'HTML', icon: '🌐' },
   { id: 'css', name: 'CSS', icon: '🎨' },
   { id: 'javascript', name: 'JavaScript', icon: '⚡' },
+  { id: 'react', name: 'React', icon: '⚛️' },
 ];

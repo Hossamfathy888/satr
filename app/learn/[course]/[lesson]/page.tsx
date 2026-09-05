@@ -7,6 +7,31 @@ import ClientTryItButton from '@/components/ClientTryItButton';
 import QuizComponent from '@/components/QuizComponent';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { getLessonData, getLessonsByCourse } from '@/lib/lessons';
+import { notFound } from 'next/navigation';
+// ... باقي الاستيرادات
+
+// إضافة هذا الجزء لتحسين SEO ديناميكياً
+export async function generateMetadata({ params }: { params: Promise<{ course: string; lesson: string }> }) {
+  const { course, lesson: lessonId } = await params;
+  const lesson = getLessonData(course, lessonId);
+
+  if (!lesson) {
+    return { title: 'درس غير موجود | سطر' };
+  }
+
+  return {
+    title: `${lesson.title} | دورة ${course.toUpperCase()} - منصة سطر`,
+    description: `تعلم ${lesson.title} في دورة ${course.toUpperCase()} على منصة سطر. درس تفاعلي مع أمثلة عملية واختبارات.`,
+    openGraph: {
+      title: `${lesson.title} | منصة سطر`,
+      description: `تعلم ${course.toUpperCase()} بأسلوب تفاعلي وبسيط.`,
+      type: 'article',
+    },
+  };
+}
+
+export default async function LessonPage({ params }: { params: Promise<{ course: string; lesson: string }> }) {
 
 interface LessonPageProps {
   params: Promise<{
